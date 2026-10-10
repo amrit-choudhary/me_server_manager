@@ -1,0 +1,18 @@
+# systemd unit: starts the dashboard at boot.
+# Edit User and the paths, then see README.md for install steps.
+
+[Unit]
+Description=Game server manager dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=amrit
+WorkingDirectory=/home/amrit/gamedev/me_server_manager/me_server_manager
+ExecStart=/usr/bin/python3 /home/amrit/gamedev/me_server_manager/me_server_manager/server_manager.py
+Restart=on-failure
+# Only stop the dashboard itself; game servers it started keep running.
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

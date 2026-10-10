@@ -1,0 +1,26 @@
+{
+    "repo_dir": "/home/amrit/gamedev/cpp_projects/village_shop/village_shop",
+    "host": "0.0.0.0",
+    "port": 8080,
+
+    "build_steps": [
+        "git pull --ff-only",
+        "cmake -B build -DCMAKE_BUILD_TYPE=Release -DVG_BUILD_TESTS=OFF",
+        "cmake --build build --target VillageShop_Server VillageShop_ContentServer -j2",
+        "cp -r server/resources build/server/",
+        "cp -r content_server/resources content_server/dlc build/content_server/"
+    ],
+
+    "servers": [
+        {
+            "name": "Game Server",
+            "exe": "build/server/VillageShop_Server",
+            "autostart": false
+        },
+        {
+            "name": "Content Server",
+            "exe": "build/content_server/VillageShop_ContentServer",
+            "autostart": false
+        }
+    ]
+}
