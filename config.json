@@ -3,6 +3,10 @@
     "host": "0.0.0.0",
     "port": 8080,
 
+    "clean_steps": [
+        "[ ! -d build ] || cmake --build build --target clean"
+    ],
+
     "build_steps": [
         "git pull --ff-only",
         "cmake -B build -DCMAKE_BUILD_TYPE=Release -DVG_BUILD_TESTS=OFF",
@@ -15,12 +19,14 @@
         {
             "name": "Game Server",
             "exe": "build/server/VillageShop_Server",
-            "autostart": false
+            "autostart": false,
+            "auto_restart": true
         },
         {
             "name": "Content Server",
             "exe": "build/content_server/VillageShop_ContentServer",
-            "autostart": false
+            "autostart": false,
+            "auto_restart": true
         }
     ]
 }
